@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>侦听事件--内联逻辑</title>
+    <script src="./vue2_01.js"></script>
+</head>
+<body>
+<div id="app">
+        <button v-on:click="length++">改变边长</button>
+        <button v-on:click="changeLength">改变边长</button>
+        <p>正方形的边长是{{ length }},面积是{{ area }}</p>
+        <button v-on:click="changeLength2" value="1">边长+1</button>
+        <button v-on:click="changeLength2" value="10">边长+10</button>
+</div>
+<script>
+    let i=1
+    let square = {length:2}
+    let vm = new Vue({
+        el:"#app",
+        data:square,
+        computed:{
+            area(){
+                return this.length * this.length
+            }
+        },
+        methods:{
+            changeLength(){
+                this.length++
+                alert(`边长改变${i}次`)
+                i++
+            },
+            changeLength2(event){
+                this.length += Number(event.target.value)
+                alert("边长已改变！,加了"+Number(event.target.value))
+
+            }
+        } 
+    })
+</script>
+</body>
+</html>
